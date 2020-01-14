@@ -1,4 +1,4 @@
-package com.example.quotesbook;
+package com.example.quotesbook.controller;
 
 import com.example.quotesbook.domain.Quote;
 import com.example.quotesbook.repos.QuoteRepo;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.Map;
 
 @Controller
-public class GreetingController {
+public class MainController {
     @Autowired
     private QuoteRepo quoteRepo;
 
