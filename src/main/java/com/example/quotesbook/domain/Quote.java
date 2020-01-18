@@ -1,9 +1,6 @@
 package com.example.quotesbook.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Quote {
@@ -13,12 +10,21 @@ public class Quote {
     private String text;
     private String author;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private User user;
+
     public Quote() {
     }
 
-    public Quote(String text, String author) {
+    public Quote(String text, String author, User user) {
         this.text = text;
         this.author = author;
+        this.user = user;
+    }
+
+    public String getUserName() {
+        return user != null ? user.getUsername() : "<none>";
     }
 
     public Integer getId() {
@@ -43,5 +49,13 @@ public class Quote {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
