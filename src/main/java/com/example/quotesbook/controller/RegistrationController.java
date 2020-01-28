@@ -3,7 +3,6 @@ package com.example.quotesbook.controller;
 import com.example.quotesbook.domain.Role;
 import com.example.quotesbook.domain.User;
 import com.example.quotesbook.repos.UserRepo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,8 +12,12 @@ import java.util.Map;
 
 @Controller
 public class RegistrationController {
-    @Autowired
-    private UserRepo userRepo;
+    private final UserRepo userRepo;
+
+    public RegistrationController(UserRepo userRepo) {
+        this.userRepo = userRepo;
+    }
+
     @GetMapping("/registration")
     public String registration() {
         return "registration";
